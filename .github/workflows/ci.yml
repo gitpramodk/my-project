@@ -30,6 +30,17 @@ jobs:
 
     - name: Build with Gradle
       run: ./gradlew build
+    
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v2      
+      
+    - name: Build and Push Docker Image
+      uses: docker/build-push-action@v3
+      with:
+        image: pramodindocker/github-actions-app
+        registry: docker.io
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_PASSWORD }}
 
 
          
